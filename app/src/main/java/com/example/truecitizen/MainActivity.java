@@ -54,26 +54,21 @@ public class MainActivity extends AppCompatActivity {
 
         // next button behaviors
         nextButton.setOnClickListener(view -> {
-            if (currentQuestion == questionBank.length - 1) {
-                currentQuestion = 0;
-            }
-            else {
-                this.currentQuestion++;
-            }
+            currentQuestion = (currentQuestion == questionBank.length - 1)
+                    ? 0
+                    : currentQuestion + 1;
+
             questionTextView.setText(questionBank[currentQuestion].getAnswerResId());
             setActionBarColor(actionBar, "#FF6200EE");
         });
 
         // prev button behaviors
         prevButton.setOnClickListener(view -> {
-            if(currentQuestion == 0) {
-                currentQuestion = questionBank.length - 1;
-            }
-            else {
-                this.currentQuestion--;
-            }
-            questionTextView.setText(questionBank[currentQuestion].getAnswerResId());
+            currentQuestion = (currentQuestion == 0)
+                    ? questionBank.length - 1
+                    : currentQuestion - 1;
 
+            questionTextView.setText(questionBank[currentQuestion].getAnswerResId());
             setActionBarColor(actionBar, "#FF6200EE");
         });
 
@@ -82,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             if(questionBank[currentQuestion].isAnswerTrue()) {
                 Toast.makeText(
                         MainActivity.this,
-                        "Correct!",
+                        R.string.correct_answer,
                         Toast.LENGTH_SHORT
                 ).show();
 
@@ -91,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             else {
                 Toast.makeText(
                         MainActivity.this,
-                        "Incorrect :(",
+                        R.string.wrong_answer,
                         Toast.LENGTH_SHORT
                 ).show();
 
@@ -104,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             if(!(questionBank[currentQuestion].isAnswerTrue())) {
                 Toast.makeText(
                         MainActivity.this,
-                        "Correct!",
+                        R.string.correct_answer,
                         Toast.LENGTH_SHORT
                 ).show();
 
@@ -113,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             else {
                 Toast.makeText(
                         MainActivity.this,
-                        "Incorrect :(",
+                        R.string.wrong_answer,
                         Toast.LENGTH_SHORT
                 ).show();
 
